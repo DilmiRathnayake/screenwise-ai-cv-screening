@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+*.log
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Models & large artifacts (keep metrics)
+ai-service/models/extraction/ner_model/
+ai-service/models/ranking/*.pkl
+ai-service/models/ranking/*.joblib
+!ai-service/models/**/.gitkeep
+!ai-service/models/**/metrics.json
+
+# Datasets (large Kaggle files — path via env)
+datasets/*.csv
+datasets/*.json
+!datasets/.gitkeep
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Node / frontend
+node_modules/
+dist/
+build/
+backend/uploads/
+backend/.env
+!backend/.env.example
+frontend/dist/
+frontend/.env
+!frontend/.env.example

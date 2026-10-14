@@ -1,0 +1,124 @@
+{
+  "dataset_name": "SCREENWISE Model 2 - IT Candidate Ranking Dataset",
+  "total_pairs": 10000,
+  "unique_jobs": 666,
+  "unique_candidates": 10000,
+  "seed": 42,
+  "label_thresholds": {
+    "Not Relevant": [
+      0,
+      20
+    ],
+    "Low Relevance": [
+      20,
+      40
+    ],
+    "Moderate Relevance": [
+      40,
+      60
+    ],
+    "High Relevance": [
+      60,
+      80
+    ],
+    "Very High Relevance": [
+      80,
+      101
+    ]
+  },
+  "component_weights": {
+    "required_skill": 0.35,
+    "preferred_skill": 0.15,
+    "experience": 0.15,
+    "project": 0.15,
+    "education": 0.1,
+    "certification": 0.05,
+    "semantic": 0.05
+  },
+  "tier_distribution": {
+    "moderate": 2984,
+    "high": 2542,
+    "low": 1986,
+    "very_high": 1505,
+    "very_low": 983
+  },
+  "archetype_distribution": {
+    "strong_match": 2792,
+    "overqualified": 1255,
+    "underqualified": 1187,
+    "strong_project_low_experience": 997,
+    "partial_skill": 996,
+    "career_switch": 991,
+    "experienced_missing_skills": 662,
+    "education_no_experience": 649,
+    "wrong_specialization": 471
+  },
+  "label_distribution": {
+    "0": 259,
+    "1": 2423,
+    "2": 2999,
+    "3": 3452,
+    "4": 867
+  },
+  "role_distribution": {
+    "Database Administrator": 397,
+    "UI/UX Designer": 350,
+    "QA Engineer": 342,
+    "Cybersecurity Analyst": 328,
+    "PHP Developer": 324,
+    "DevOps Engineer": 320,
+    "Java Developer": 317,
+    "Software QA Engineer": 313,
+    "Technical Support Engineer": 292,
+    "C# Developer": 280,
+    "Android Developer": 276,
+    "Cloud/DevOps Engineer": 275,
+    "AI Engineer": 274,
+    "Full Stack Developer": 270,
+    "React Developer": 267,
+    "Automation Tester": 266,
+    "Manual Tester": 261,
+    "System Administrator": 253,
+    "Backend Developer": 245,
+    "Node.js Developer": 238,
+    "Flutter Developer": 233,
+    "IT Support Engineer": 233,
+    "Product Designer": 232,
+    "Python Developer": 228,
+    "Software Architect": 220,
+    "Cybersecurity Engineer": 218,
+    "Data Analyst": 203,
+    "Network Engineer": 202,
+    "Mobile Application Developer": 201,
+    "Next.js Developer": 200,
+    "React Native Developer": 192,
+    "Software Developer": 187,
+    "Frontend Developer": 180,
+    "Machine Learning Engineer": 179,
+    "Data Engineer": 179,
+    ".NET Developer": 177,
+    "NLP Engineer": 170,
+    "Cloud Engineer": 169,
+    "Solutions Engineer": 153,
+    "Data Scientist": 153,
+    "Software Engineer": 110,
+    "Laravel Developer": 93
+  },
+  "seniority_distribution": {
+    "Trainee": 1605,
+    "Associate": 1524,
+    "Senior": 1521,
+    "Lead": 1493,
+    "Intern": 1439,
+    "Mid-level": 1296,
+    "Junior": 1122
+  },
+  "split": {
+    "train_rows": 7184,
+    "val_rows": 1400,
+    "test_rows": 1416,
+    "train_jobs": 466,
+    "val_jobs": 99,
+    "test_jobs": 101
+  }
+}

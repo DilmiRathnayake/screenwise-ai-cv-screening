@@ -1,0 +1,48 @@
+{
+  "name": "CV Screening — Interview Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cv-interview",
+        "responseMode": "onReceived"
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.event}}",
+              "value2": "interview.scheduled"
+            }
+          ]
+        }
+      },
+      "name": "Is Scheduled?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "const j = items[0].json;\nreturn [{ json: { to: j.candidate?.email, subject: `Interview: ${j.job?.title}`, body: `Hi ${j.candidate?.name}, interview on ${j.scheduled_at}. Link: ${j.meeting_link || 'TBD'}` } }];"
+      },
+      "name": "Build Email",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [700, 220]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Is Scheduled?", "type": "main", "index": 0 }]] },
+    "Is Scheduled?": { "main": [[{ "node": "Build Email", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1"
+}

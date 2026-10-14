@@ -1,0 +1,50 @@
+{
+  "extraction": {
+    "filename": "sample_cv.docx",
+    "processing_ms": 21.04,
+    "name": "Priya Fernando",
+    "email": "priya.fernando@email.com",
+    "skills": [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "FastAPI",
+      "MySQL",
+      "Git",
+      "Chart.js",
+      "Certifications"
+    ],
+    "communication_score": 0.8647,
+    "ner_loaded": true,
+    "source_method": "python-docx"
+  },
+  "ranking": {
+    "job_title": "React Developer",
+    "industry": "it",
+    "weights_used": {
+      "technical_skills": 0.35,
+      "experience": 0.25,
+      "projects": 0.1,
+      "education": 0.15,
+      "communication": 0.1,
+      "certifications": 0.05
+    },
+    "top_candidates": [
+      {
+        "candidate_id": "extracted",
+        "name": "Priya Fernando",
+        "matching_percentage": 54.94,
+        "ranking_position": 1,
+        "explanation": "Overall match 54.94% for 'React Developer' (IT). Semantic similarity=0.68. technical_skills=0.86, communication=0.86, certifications=1.00."
+      },
+      {
+        "candidate_id": "weak",
+        "name": "Sam Office",
+        "matching_percentage": 16.28,
+        "ranking_position": 2,
+        "explanation": "Overall match 16.28% for 'React Developer' (IT). Semantic similarity=-0.06. education=0.57, experience=0.20, communication=0.40."
+      }
+    ]
+  }
+}

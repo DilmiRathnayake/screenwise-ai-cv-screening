@@ -1,0 +1,369 @@
+{
+  "models": "weighted_multi_criteria + sentence_transformers + lightgbm",
+  "dataset": "ScreenWise_IT_Ranking",
+  "eval_split": "test",
+  "baseline": {
+    "models": "weighted_multi_criteria + sentence_transformers + lightgbm",
+    "dataset": "ScreenWise_IT_Ranking",
+    "eval_split": "test",
+    "baseline": {
+      "models": "weighted_multi_criteria + sentence_transformers + lightgbm",
+      "dataset": "ScreenWise_IT_Ranking",
+      "eval_split": "test",
+      "baseline": {
+        "models": "weighted_multi_criteria + sentence_transformers",
+        "dataset": "ScreenWise_IT_Ranking",
+        "eval_split": "test",
+        "baseline": {
+          "ai_screening": {
+            "dataset": "AI_Resume_Screening.csv",
+            "n_samples": 1000,
+            "threshold": 0.7379,
+            "precision": 0.9024,
+            "recall": 0.5579,
+            "f1": 0.6895,
+            "accuracy": 0.592,
+            "spearman_vs_ai_score": 0.2972,
+            "mean_score_hire": 0.734,
+            "mean_score_reject": 0.6924,
+            "confusion": {
+              "tp": 453,
+              "fp": 49,
+              "fn": 359,
+              "tn": 139
+            }
+          },
+          "resume_data": {
+            "dataset": "resume_data.csv",
+            "n_samples": 400,
+            "spearman_vs_matched_score": 0.1491,
+            "ndcg_at_10": 0.7683,
+            "mean_pred": 0.3922,
+            "mean_gold": 0.6638
+          }
+        },
+        "it_weights": {
+          "technical_skills": 0.35,
+          "experience": 0.25,
+          "education": 0.15,
+          "communication": 0.1,
+          "projects": 0.1,
+          "certifications": 0.05
+        },
+        "candidate_eval": {
+          "threshold": 0.6,
+          "precision": 0.2545,
+          "recall": 1.0,
+          "f1": 0.4057,
+          "accuracy": 0.2578,
+          "confusion": {
+            "tp": 57,
+            "fp": 167,
+            "fn": 0,
+            "tn": 1
+          },
+          "dataset": "it_test.csv",
+          "n_samples": 225,
+          "spearman_vs_overall_score": 0.8255,
+          "mean_pred": 0.694,
+          "mean_gold": 0.5088
+        },
+        "pair_eval_test": {
+          "dataset": "it_candidate_job_matches.csv",
+          "n_pairs": 252,
+          "n_job_groups": 90,
+          "precision_at_5": 0.4,
+          "recall_at_5": 0.0769,
+          "mrr": 0.2111,
+          "ndcg_at_5": 0.2109,
+          "precision": 0.1984,
+          "recall": 0.9615,
+          "f1": 0.3289,
+          "accuracy": 0.5952,
+          "confusion": {
+            "tp": 25,
+            "fp": 101,
+            "fn": 1,
+            "tn": 125
+          }
+        }
+      },
+      "calibration": {
+        "semantic_fusion_weight": 0.22,
+        "ml_blend_weight": 0.45,
+        "shortlist_threshold": 0.7,
+        "score": 0.3731,
+        "val_pair_ndcg_at_5": 0.139,
+        "val_pair_mrr": 0.1386,
+        "val_binary_f1": 0.9194,
+        "it_weights": {
+          "technical_skills": 0.35,
+          "experience": 0.25,
+          "education": 0.15,
+          "communication": 0.1,
+          "projects": 0.1,
+          "certifications": 0.05
+        },
+        "feature_names": [
+          "skill_overlap_ratio",
+          "skill_overlap_count",
+          "missing_skill_ratio",
+          "experience_ratio",
+          "experience_meets_min",
+          "education_level",
+          "project_count_norm",
+          "cert_count_norm",
+          "communication_score",
+          "semantic_similarity",
+          "skills_criterion",
+          "experience_criterion",
+          "projects_criterion",
+          "education_criterion",
+          "certifications_criterion",
+          "rule_based_score"
+        ]
+      },
+      "it_weights": {
+        "technical_skills": 0.35,
+        "experience": 0.25,
+        "education": 0.15,
+        "communication": 0.1,
+        "projects": 0.1,
+        "certifications": 0.05
+      },
+      "lgbm": {
+        "train_pairs": 1382,
+        "train_positives": 90,
+        "feature_importance_top5": {
+          "projects_criterion": 590,
+          "rule_based_score": 547,
+          "communication_score": 521,
+          "skills_criterion": 391,
+          "semantic_similarity": 372
+        }
+      },
+      "candidate_eval": {
+        "threshold": 0.7,
+        "precision": 0.9688,
+        "recall": 0.5439,
+        "f1": 0.6966,
+        "accuracy": 0.88,
+        "confusion": {
+          "tp": 31,
+          "fp": 1,
+          "fn": 26,
+          "tn": 167
+        },
+        "dataset": "it_test.csv",
+        "n_samples": 225,
+        "spearman_vs_overall_score": 0.7345,
+        "mean_pred": 0.5002,
+        "mean_gold": 0.5088
+      },
+      "pair_eval_test": {
+        "dataset": "it_candidate_job_matches.csv",
+        "n_pairs": 252,
+        "n_job_groups": 90,
+        "precision_at_5": 0.4,
+        "recall_at_5": 0.0769,
+        "mrr": 0.2056,
+        "ndcg_at_5": 0.2065,
+        "precision": 0.375,
+        "recall": 0.1154,
+        "f1": 0.1765,
+        "accuracy": 0.8889,
+        "confusion": {
+          "tp": 3,
+          "fp": 5,
+          "fn": 23,
+          "tn": 221
+        },
+        "threshold_used": 0.7
+      }
+    },
+    "calibration": {
+      "semantic_fusion_weight": 0.22,
+      "ml_blend_weight": 0.45,
+      "shortlist_threshold": 0.7,
+      "score": 0.321,
+      "val_pair_ndcg_at_5": 0.139,
+      "val_pair_mrr": 0.1386,
+      "val_binary_f1": 0.9194,
+      "it_weights": {
+        "technical_skills": 0.35,
+        "experience": 0.25,
+        "education": 0.15,
+        "communication": 0.1,
+        "projects": 0.1,
+        "certifications": 0.05
+      },
+      "feature_names": [
+        "skill_overlap_ratio",
+        "skill_overlap_count",
+        "missing_skill_ratio",
+        "experience_ratio",
+        "experience_meets_min",
+        "education_level",
+        "project_count_norm",
+        "cert_count_norm",
+        "communication_score",
+        "semantic_similarity",
+        "skills_criterion",
+        "experience_criterion",
+        "projects_criterion",
+        "education_criterion",
+        "certifications_criterion",
+        "rule_based_score"
+      ]
+    },
+    "it_weights": {
+      "technical_skills": 0.35,
+      "experience": 0.25,
+      "education": 0.15,
+      "communication": 0.1,
+      "projects": 0.1,
+      "certifications": 0.05
+    },
+    "lgbm": {
+      "train_pairs": 1382,
+      "train_positives": 90,
+      "feature_importance_top5": {
+        "projects_criterion": 590,
+        "rule_based_score": 547,
+        "communication_score": 521,
+        "skills_criterion": 391,
+        "semantic_similarity": 372
+      }
+    },
+    "candidate_eval": {
+      "threshold": 0.7,
+      "precision": 0.9688,
+      "recall": 0.5439,
+      "f1": 0.6966,
+      "accuracy": 0.88,
+      "confusion": {
+        "tp": 31,
+        "fp": 1,
+        "fn": 26,
+        "tn": 167
+      },
+      "dataset": "it_test.csv",
+      "n_samples": 225,
+      "spearman_vs_overall_score": 0.7345,
+      "mean_pred": 0.5002,
+      "mean_gold": 0.5088
+    },
+    "pair_eval_test": {
+      "dataset": "it_candidate_job_matches.csv",
+      "n_pairs": 252,
+      "n_job_groups": 90,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.0769,
+      "mrr": 0.2056,
+      "ndcg_at_5": 0.2065,
+      "precision": 0.375,
+      "recall": 0.1154,
+      "f1": 0.1765,
+      "accuracy": 0.8889,
+      "confusion": {
+        "tp": 3,
+        "fp": 5,
+        "fn": 23,
+        "tn": 221
+      },
+      "threshold_used": 0.7
+    }
+  },
+  "calibration": {
+    "semantic_fusion_weight": 0.08,
+    "ml_blend_weight": 0.25,
+    "shortlist_threshold": 0.6,
+    "score": 0.2975,
+    "val_pair_ndcg_at_5": 0.1397,
+    "val_pair_mrr": 0.1386,
+    "val_binary_f1": 1.0,
+    "it_weights": {
+      "technical_skills": 0.35,
+      "experience": 0.25,
+      "education": 0.15,
+      "communication": 0.1,
+      "projects": 0.1,
+      "certifications": 0.05
+    },
+    "feature_names": [
+      "skill_overlap_ratio",
+      "skill_overlap_count",
+      "missing_skill_ratio",
+      "experience_ratio",
+      "experience_meets_min",
+      "education_level",
+      "project_count_norm",
+      "cert_count_norm",
+      "communication_score",
+      "semantic_similarity",
+      "skills_criterion",
+      "experience_criterion",
+      "projects_criterion",
+      "education_criterion",
+      "certifications_criterion",
+      "rule_based_score"
+    ]
+  },
+  "it_weights": {
+    "technical_skills": 0.35,
+    "experience": 0.25,
+    "education": 0.15,
+    "communication": 0.1,
+    "projects": 0.1,
+    "certifications": 0.05
+  },
+  "lgbm": {
+    "train_pairs": 1382,
+    "train_positives": 90,
+    "feature_importance_top5": {
+      "rule_based_score": 603,
+      "communication_score": 527,
+      "projects_criterion": 498,
+      "experience_criterion": 485,
+      "skills_criterion": 398
+    }
+  },
+  "candidate_eval": {
+    "threshold": 0.6,
+    "precision": 1.0,
+    "recall": 0.9825,
+    "f1": 0.9912,
+    "accuracy": 0.9956,
+    "confusion": {
+      "tp": 56,
+      "fp": 0,
+      "fn": 1,
+      "tn": 168
+    },
+    "dataset": "it_test.csv",
+    "n_samples": 225,
+    "spearman_vs_overall_score": 0.7944,
+    "mean_pred": 0.517,
+    "mean_gold": 0.5088
+  },
+  "pair_eval_test": {
+    "dataset": "it_candidate_job_matches.csv",
+    "n_pairs": 252,
+    "n_job_groups": 90,
+    "precision_at_5": 0.4,
+    "recall_at_5": 0.0769,
+    "mrr": 0.2056,
+    "ndcg_at_5": 0.207,
+    "precision": 0.5,
+    "recall": 0.1538,
+    "f1": 0.2353,
+    "accuracy": 0.8968,
+    "confusion": {
+      "tp": 4,
+      "fp": 4,
+      "fn": 22,
+      "tn": 222
+    },
+    "threshold_used": 0.6
+  }
+}

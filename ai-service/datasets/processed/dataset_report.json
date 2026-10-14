@@ -1,0 +1,78 @@
+{
+  "ner": {
+    "splits": {
+      "full": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ner\\it_ner_full.json",
+        "input_records": 1000,
+        "output_records": 1000,
+        "dropped": 0
+      },
+      "train": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ner\\it_ner_train.json",
+        "input_records": 700,
+        "output_records": 700,
+        "dropped": 0
+      },
+      "val": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ner\\it_ner_val.json",
+        "input_records": 150,
+        "output_records": 150,
+        "dropped": 0
+      },
+      "test": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ner\\it_ner_test.json",
+        "input_records": 150,
+        "output_records": 150,
+        "dropped": 0
+      }
+    },
+    "label_counts": {
+      "NAME": 1994,
+      "EMAIL": 2000,
+      "DEGREE": 2000,
+      "SKILL": 12698,
+      "CERTIFICATION": 2618
+    }
+  },
+  "ranking": {
+    "files": {
+      "it_candidates_full.csv": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ranking\\it_candidates_full.csv",
+        "records": 1497,
+        "dropped_duplicate_ids": 0,
+        "dropped_duplicate_emails": 3
+      },
+      "it_train.csv": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ranking\\it_train.csv",
+        "records": 1050,
+        "dropped_duplicate_ids": 0,
+        "dropped_duplicate_emails": 0
+      },
+      "it_val.csv": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ranking\\it_val.csv",
+        "records": 225,
+        "dropped_duplicate_ids": 0,
+        "dropped_duplicate_emails": 0
+      },
+      "it_test.csv": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ranking\\it_test.csv",
+        "records": 225,
+        "dropped_duplicate_ids": 0,
+        "dropped_duplicate_emails": 0
+      },
+      "it_job_descriptions.csv": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ranking\\it_job_descriptions.csv",
+        "records": 200,
+        "dropped_duplicate_ids": 0,
+        "dropped_duplicate_emails": 0
+      },
+      "it_candidate_job_matches.csv": {
+        "source": "D:\\cv screening\\ScreenWise_IT_Datasets_ranking\\it_candidate_job_matches.csv",
+        "records": 2000,
+        "dropped_duplicate_ids": 0,
+        "dropped_duplicate_emails": 0
+      }
+    }
+  },
+  "processed_root": "D:\\cv screening\\cv_screening\\cv_screening\\ai-service\\datasets\\processed"
+}

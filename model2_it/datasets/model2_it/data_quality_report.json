@@ -1,0 +1,115 @@
+{
+  "source_file": "/home/claude/model2_it/output/model2_it/ranking_dataset.csv",
+  "row_count": 10000,
+  "column_count": 38,
+  "missing_values": {},
+  "duplicates": {
+    "duplicate_full_rows": 0,
+    "duplicate_job_candidate_pairs": 0,
+    "duplicate_candidate_profile_text": 84,
+    "duplicate_job_descriptions": 0
+  },
+  "value_range_issues": {
+    "invalid_experience_negative": 0,
+    "invalid_experience_extreme": 0,
+    "invalid_scores_out_of_range": 0,
+    "invalid_labels": 0,
+    "min_exp_gt_preferred_exp": 0
+  },
+  "impossible_skill_combinations": {
+    "impossible_combination_flags": 0
+  },
+  "distributions": {
+    "label_distribution": {
+      "0": 259,
+      "1": 2423,
+      "2": 2999,
+      "3": 3452,
+      "4": 867
+    },
+    "match_tier_distribution": {
+      "moderate": 2984,
+      "high": 2542,
+      "low": 1986,
+      "very_high": 1505,
+      "very_low": 983
+    },
+    "job_role_distribution": {
+      "Database Administrator": 397,
+      "UI/UX Designer": 350,
+      "QA Engineer": 342,
+      "Cybersecurity Analyst": 328,
+      "PHP Developer": 324,
+      "DevOps Engineer": 320,
+      "Java Developer": 317,
+      "Software QA Engineer": 313,
+      "Technical Support Engineer": 292,
+      "C# Developer": 280,
+      "Android Developer": 276,
+      "Cloud/DevOps Engineer": 275,
+      "AI Engineer": 274,
+      "Full Stack Developer": 270,
+      "React Developer": 267,
+      "Automation Tester": 266,
+      "Manual Tester": 261,
+      "System Administrator": 253,
+      "Backend Developer": 245,
+      "Node.js Developer": 238,
+      "Flutter Developer": 233,
+      "IT Support Engineer": 233,
+      "Product Designer": 232,
+      "Python Developer": 228,
+      "Software Architect": 220,
+      "Cybersecurity Engineer": 218,
+      "Data Analyst": 203,
+      "Network Engineer": 202,
+      "Mobile Application Developer": 201,
+      "Next.js Developer": 200,
+      "React Native Developer": 192,
+      "Software Developer": 187,
+      "Frontend Developer": 180,
+      "Machine Learning Engineer": 179,
+      "Data Engineer": 179,
+      ".NET Developer": 177,
+      "NLP Engineer": 170,
+      "Cloud Engineer": 169,
+      "Solutions Engineer": 153,
+      "Data Scientist": 153,
+      "Software Engineer": 110,
+      "Laravel Developer": 93
+    },
+    "seniority_distribution": {
+      "Trainee": 1605,
+      "Associate": 1524,
+      "Senior": 1521,
+      "Lead": 1493,
+      "Intern": 1439,
+      "Mid-level": 1296,
+      "Junior": 1122
+    }
+  },
+  "near_duplicate_text_check": {
+    "near_duplicate_bucket_count": 561,
+    "rows_in_near_duplicate_buckets": 1881
+  },
+  "split_leakage_check": {
+    "status": "checked",
+    "job_id_overlap_between_splits": {
+      "train_vs_validation": 0,
+      "train_vs_test": 0,
+      "validation_vs_test": 0
+    },
+    "job_candidate_pair_overlap_between_splits": {
+      "train_vs_validation": 0,
+      "train_vs_test": 0,
+      "validation_vs_test": 0
+    },
+    "split_sizes": {
+      "train": 7184,
+      "validation": 1400,
+      "test": 1416
+    }
+  },
+  "overall_status": "PASS",
+  "total_flagged_issues": 0
+}

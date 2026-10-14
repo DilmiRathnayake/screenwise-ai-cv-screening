@@ -1,0 +1,35 @@
+{
+  "semantic_fusion_weight": 0.08,
+  "ml_blend_weight": 0.25,
+  "shortlist_threshold": 0.6,
+  "score": 0.2975,
+  "val_pair_ndcg_at_5": 0.1397,
+  "val_pair_mrr": 0.1386,
+  "val_binary_f1": 1.0,
+  "it_weights": {
+    "technical_skills": 0.35,
+    "experience": 0.25,
+    "education": 0.15,
+    "communication": 0.1,
+    "projects": 0.1,
+    "certifications": 0.05
+  },
+  "feature_names": [
+    "skill_overlap_ratio",
+    "skill_overlap_count",
+    "missing_skill_ratio",
+    "experience_ratio",
+    "experience_meets_min",
+    "education_level",
+    "project_count_norm",
+    "cert_count_norm",
+    "communication_score",
+    "semantic_similarity",
+    "skills_criterion",
+    "experience_criterion",
+    "projects_criterion",
+    "education_criterion",
+    "certifications_criterion",
+    "rule_based_score"
+  ]
+}

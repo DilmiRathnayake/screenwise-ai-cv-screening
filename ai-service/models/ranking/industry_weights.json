@@ -1,0 +1,18 @@
+{
+  "it": {
+    "technical_skills": 0.35,
+    "experience": 0.25,
+    "education": 0.15,
+    "communication": 0.1,
+    "projects": 0.1,
+    "certifications": 0.05
+  },
+  "default": {
+    "technical_skills": 0.35,
+    "experience": 0.25,
+    "education": 0.15,
+    "communication": 0.1,
+    "projects": 0.1,
+    "certifications": 0.05
+  }
+}

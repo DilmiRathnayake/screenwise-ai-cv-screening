@@ -1,0 +1,60 @@
+{
+  "model": "SCREENWISE Model 2 \u2014 IT Candidate Ranking (LightGBM LambdaMART + blend)",
+  "evaluated_at": "2026-09-16T14:19:48Z",
+  "eval_split": "test",
+  "test_rows": 1416,
+  "test_jobs": 101,
+  "relevance_threshold_for_precision_recall": 3.0,
+  "ml_blend_weight": 0.0,
+  "rule_blend_weight": 1.0,
+  "top1_accuracy_pct": 100.0,
+  "ml_model_raw": {
+    "ndcg_at_5": 0.9997,
+    "ndcg_at_10": 0.9999,
+    "mrr": 1.0,
+    "precision_at_5": 0.8653,
+    "recall_at_5": 0.8023,
+    "top1_accuracy": 0.9604,
+    "spearman": 0.9541,
+    "kendall_tau": 0.8456
+  },
+  "ml_model": {
+    "ndcg_at_5": 1.0,
+    "ndcg_at_10": 1.0,
+    "mrr": 1.0,
+    "precision_at_5": 0.8653,
+    "recall_at_5": 0.8023,
+    "top1_accuracy": 1.0,
+    "spearman": 0.9138,
+    "kendall_tau": 0.7923
+  },
+  "baseline": {
+    "ndcg_at_5": 0.9761,
+    "ndcg_at_10": 0.9832,
+    "mrr": 1.0,
+    "precision_at_5": 0.8376,
+    "recall_at_5": 0.7755,
+    "top1_accuracy": 0.4455,
+    "spearman": 0.9032,
+    "kendall_tau": 0.7973
+  },
+  "delta_ml_minus_baseline": {
+    "ndcg_at_5": 0.0239,
+    "ndcg_at_10": 0.0168,
+    "mrr": 0.0,
+    "precision_at_5": 0.0277,
+    "recall_at_5": 0.0268,
+    "top1_accuracy": 0.5545,
+    "spearman": 0.0106,
+    "kendall_tau": -0.005
+  },
+  "hyperparameters": {
+    "num_leaves": 63,
+    "learning_rate": 0.15,
+    "n_estimators": 200,
+    "min_child_samples": 20,
+    "best_iteration": 142
+  },
+  "feature_count": 413,
+  "notes": "All metrics computed on held-out test jobs only. No test data was used during training or tuning. ml_model reports blended scores (ML + rule-based composite)."
+}
