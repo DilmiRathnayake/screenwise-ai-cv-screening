@@ -20,8 +20,9 @@ from app.utils.text_cleaning import (
 
 SECTION_HEADERS = {
     "education": r"education|academic|qualification",
-    "experience": r"experience|employment|work history|professional experience",
+    "experience": r"(?:work |professional )?experience|employment|work history",
     "skills": r"skills|technical skills|competencies|technologies",
+    "soft_skills": r"soft skills",
     "projects": r"projects|personal projects|portfolio projects",
     "certifications": r"certifications?|licenses?|credentials",
     "awards": r"awards?|honou?rs?|achievements",
@@ -45,6 +46,8 @@ class SectionParser:
 
         skills_block = sections.get("skills", "")
         technical, soft = self._parse_skills(skills_block or text)
+        # A separate "Soft Skills" heading: its items are soft skills, not technical ones
+        soft = list(dict.fromkeys(soft + self._parse_list_block(sections.get("soft_skills", ""))))[:20]
 
         return {
             "email": email,
