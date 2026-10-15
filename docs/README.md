@@ -4,6 +4,7 @@
 |----------|-------------|
 | **[DOCUMENTATION.md](./DOCUMENTATION.md)** | Full project documentation (start here) |
 | **[IT_DATASET_AND_MODELS.md](./IT_DATASET_AND_MODELS.md)** | IT dataset integration + Model 01 & 02 accuracy report |
+| **[RUN_LOCALLY_WINDOWS.md](./RUN_LOCALLY_WINDOWS.md)** | Run the whole project on Windows without Docker + Jupyter demo |
 | [PHASE1_AI_MODELS.md](./PHASE1_AI_MODELS.md) | AI extraction + ranking |
 | [PHASE2_BACKEND.md](./PHASE2_BACKEND.md) | Express + MySQL API |
 | [PHASE3_FRONTEND.md](./PHASE3_FRONTEND.md) | React dashboard (phase notes) |

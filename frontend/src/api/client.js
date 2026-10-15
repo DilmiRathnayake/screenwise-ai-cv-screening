@@ -34,6 +34,9 @@ api.interceptors.response.use(
 );
 
 export function getErrorMessage(error) {
+  if (error?.request && !error?.response) {
+    return 'Cannot reach the server. Please check that the backend is running.';
+  }
   return (
     error?.response?.data?.message ||
     error?.message ||
