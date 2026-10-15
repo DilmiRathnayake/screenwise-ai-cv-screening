@@ -1,0 +1,20 @@
+{
+  "json_dir": "datasets/ResumesJsonAnnotated/ResumesJsonAnnotated",
+  "pdf_files": 5035,
+  "pdf_without_json": 6,
+  "min_it_skills_rule": 5,
+  "label_types": {
+    "SKILL": 538482
+  },
+  "json_files": 5029,
+  "empty_text": 47,
+  "duplicate_text": 1651,
+  "invalid_offsets_records": 0,
+  "records_with_overlapping_spans": 4671,
+  "zero_annotation_records": 58,
+  "spans_total": 538482,
+  "overlapping_span_pairs": 78983,
+  "has_lone_surrogate": 1,
+  "it_candidate_all": 370,
+  "it_candidate_unique": 279
+}

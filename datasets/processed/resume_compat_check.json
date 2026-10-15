@@ -1,0 +1,26 @@
+{
+  "sample_size": 100,
+  "pool_size": 279,
+  "seed": 42,
+  "ner_model_loaded": false,
+  "scope": "it_candidate unique records",
+  "json_text_extraction": {
+    "crashed": 0,
+    "completed": 100,
+    "no_technical_skills_found": 0,
+    "no_education_found": 77,
+    "no_experience_found": 62,
+    "median_seconds": 0.0021,
+    "median_skills_per_cv": 28.0
+  },
+  "pdf_text_extraction": {
+    "readable_text": 100,
+    "very_short_or_empty_text": 0,
+    "failed": 0,
+    "no_pdf_for_record": 0,
+    "methods": {
+      "pymupdf": 98,
+      "hybrid": 2
+    }
+  }
+}

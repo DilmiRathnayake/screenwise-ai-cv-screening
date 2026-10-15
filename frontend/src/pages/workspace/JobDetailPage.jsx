@@ -182,7 +182,70 @@ function criteriaFromRow(row) {
   return {};
 }
 
-function RankingCard({ row, onOpen }) {
+function rowScore(row) {
+  const s = Number(row.overall_score ?? row.matching_percentage ?? row.score ?? 0);
+  return s <= 1 ? s * 100 : s;
+}
+
+function rowKey(row, i) {
+  return row.application_id || row.id || `${row.candidate_id}-${i}`;
+}
+
+const MAX_COMPARE = 3;
+
+function CompareTable({ rows, onClear }) {
+  const criteria = [...new Set(rows.flatMap(({ row }) => Object.keys(criteriaFromRow(row))))];
+  const pct = (v) => Math.round(Number(v) <= 1 ? Number(v) * 100 : Number(v));
+  return (
+    <Card>
+      <div className="flex items-center justify-between gap-3">
+        <CardTitle>Side-by-side comparison</CardTitle>
+        <Button variant="ghost" size="sm" onClick={onClear}>
+          Clear
+        </Button>
+      </div>
+      <div className="mt-4 overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border text-left text-xs uppercase tracking-wider text-muted-foreground">
+              <th className="py-2 pr-4 font-semibold">Criterion</th>
+              {rows.map(({ row, key }) => (
+                <th key={key} className="py-2 pr-4 font-semibold">
+                  {row.candidate_name || row.full_name || 'Unnamed Candidate'}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {criteria.map((c) => (
+              <tr key={c} className="border-b border-border/60">
+                <td className="py-2 pr-4 capitalize text-muted-foreground">{c.replace(/_/g, ' ')}</td>
+                {rows.map(({ row, key }) => {
+                  const v = criteriaFromRow(row)[c];
+                  return (
+                    <td key={key} className="py-2 pr-4">
+                      {v == null ? '—' : `${pct(v)}%`}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+            <tr>
+              <td className="py-2 pr-4 font-semibold">Overall match</td>
+              {rows.map(({ row, key }) => (
+                <td key={key} className="py-2 pr-4 font-semibold">
+                  {Math.round(rowScore(row))}%
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Card>
+  );
+}
+
+function RankingCard({ row, onOpen, selected = false, onToggleCompare }) {
   const score = Number(row.overall_score ?? row.matching_percentage ?? row.score ?? 0);
   const normalized = score <= 1 ? score * 100 : score;
   const explanation = row.explanation || row.explanations || {};
@@ -261,9 +324,24 @@ function RankingCard({ row, onOpen }) {
           </p>
         ) : null}
 
-        <p className={cn('mt-3 text-right font-display text-2xl font-semibold', scoreColor(normalized))}>
-          {Math.round(normalized)}%
-        </p>
+        <div className="mt-3 flex items-center justify-between gap-3">
+          {onToggleCompare ? (
+            <label className="flex items-center gap-2 text-sm text-muted-foreground">
+              <input
+                type="checkbox"
+                checked={selected}
+                onChange={onToggleCompare}
+                className="rounded border-border"
+              />
+              Compare
+            </label>
+          ) : (
+            <span />
+          )}
+          <p className={cn('font-display text-2xl font-semibold', scoreColor(normalized))}>
+            {Math.round(normalized)}%
+          </p>
+        </div>
       </Card>
     </motion.div>
   );
@@ -275,6 +353,9 @@ export default function JobDetailPage({ basePath = '/hr' }) {
   const [tab, setTab] = useState('overview');
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [minScore, setMinScore] = useState('');
+  const [shortlistedOnly, setShortlistedOnly] = useState(false);
+  const [compareKeys, setCompareKeys] = useState([]);
 
   const jobQuery = useQuery({
     queryKey: queryKeys.job(jobId),
@@ -352,6 +433,31 @@ export default function JobDetailPage({ basePath = '/hr' }) {
         }),
     [rankings]
   );
+
+  const keyedRankings = useMemo(
+    () => rankings.map((row, i) => ({ row, key: rowKey(row, i) })),
+    [rankings]
+  );
+  const visibleRankings = useMemo(() => {
+    const min = Number(minScore);
+    return keyedRankings.filter(
+      ({ row }) =>
+        (!minScore || Number.isNaN(min) || rowScore(row) >= min) &&
+        (!shortlistedOnly || row.shortlisted || row.is_shortlisted)
+    );
+  }, [keyedRankings, minScore, shortlistedOnly]);
+  const compareRows = keyedRankings.filter(({ key }) => compareKeys.includes(key));
+
+  function toggleCompare(key) {
+    setCompareKeys((prev) => {
+      if (prev.includes(key)) return prev.filter((k) => k !== key);
+      if (prev.length >= MAX_COMPARE) {
+        toast(`You can compare up to ${MAX_COMPARE} candidates`);
+        return prev;
+      }
+      return [...prev, key];
+    });
+  }
 
   if (jobQuery.isLoading) return <Spinner label="Loading job…" />;
   if (!job) {
@@ -520,15 +626,57 @@ export default function JobDetailPage({ basePath = '/hr' }) {
                   </div>
                 </Card>
               ) : null}
-              <div className="grid gap-4 lg:grid-cols-2">
-                {rankings.map((row, i) => (
-                  <RankingCard
-                    key={row.id || row.application_id || row.candidate_id || i}
-                    row={row}
-                    onOpen={setSelectedCandidate}
-                  />
-                ))}
-              </div>
+              <Card className="!p-4">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+                  <label className="flex items-center gap-2 text-muted-foreground">
+                    Minimum score (%)
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      value={minScore}
+                      onChange={(e) => setMinScore(e.target.value)}
+                      placeholder="0"
+                      aria-label="Minimum score percent"
+                      className="w-20 rounded-lg border border-border bg-background/70 px-2 py-1 text-foreground"
+                    />
+                  </label>
+                  <label className="flex items-center gap-2 text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      checked={shortlistedOnly}
+                      onChange={(e) => setShortlistedOnly(e.target.checked)}
+                      className="rounded border-border"
+                    />
+                    Shortlisted only
+                  </label>
+                  <span className="text-muted-foreground">
+                    Showing {visibleRankings.length} of {rankings.length} · tick “Compare” on up to{' '}
+                    {MAX_COMPARE} candidates
+                  </span>
+                </div>
+              </Card>
+              {compareRows.length >= 2 ? (
+                <CompareTable rows={compareRows} onClear={() => setCompareKeys([])} />
+              ) : null}
+              {!visibleRankings.length ? (
+                <EmptyState
+                  title="No candidates match the filters"
+                  description="Lower the minimum score or untick “Shortlisted only”."
+                />
+              ) : (
+                <div className="grid gap-4 lg:grid-cols-2">
+                  {visibleRankings.map(({ row, key }) => (
+                    <RankingCard
+                      key={key}
+                      row={row}
+                      onOpen={setSelectedCandidate}
+                      selected={compareKeys.includes(key)}
+                      onToggleCompare={() => toggleCompare(key)}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </TabsContent>
